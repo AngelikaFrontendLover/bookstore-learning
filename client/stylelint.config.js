@@ -1,41 +1,35 @@
 // stylelint.config.js
 export default {
-    extends: [
-        "stylelint-config-standard",
-        "stylelint-config-css-modules"
+  extends: ['stylelint-config-standard', 'stylelint-config-css-modules'],
+  plugins: ['stylelint-order'],
+  rules: {
+    'color-hex-length': 'short',
+    'order/order': [['custom-properties', 'declarations'], { unspecified: 'bottom' }],
+    'order/properties-order': [
+      [
+        'display',
+        'position',
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'flex',
+        'flex-grow',
+        'flex-shrink',
+        'flex-basis',
+        'align-items',
+        'justify-content',
+        'width',
+        'height',
+        'margin',
+        'padding',
+        'background',
+        'color',
+        'font-size',
+        'font-weight',
+      ],
+      { unspecified: 'bottomAlphabetical' },
     ],
-    plugins: ["stylelint-order"],
-    rules: {
-        "color-hex-length": "short",
-        "order/order": [
-            ["custom-properties", "declarations"],
-            { unspecified: "bottom" }
-        ],
-        "order/properties-order": [
-            [
-                "display",
-                "position",
-                "top",
-                "right",
-                "bottom",
-                "left",
-                "flex",
-                "flex-grow",
-                "flex-shrink",
-                "flex-basis",
-                "align-items",
-                "justify-content",
-                "width",
-                "height",
-                "margin",
-                "padding",
-                "background",
-                "color",
-                "font-size",
-                "font-weight"
-            ],
-            { unspecified: "bottomAlphabetical" }
-        ]
-    },
-    ignoreFiles: ["**/node_modules/**", "**/dist/**"]
+  },
+  ignoreFiles: ['**/node_modules/**', '**/dist/**'],
 };
