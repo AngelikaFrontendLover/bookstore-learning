@@ -1,8 +1,13 @@
-// stylelint.config.js
 export default {
-  extends: ['stylelint-config-standard', 'stylelint-config-css-modules'],
-  plugins: ['stylelint-order'],
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-css-modules',
+    'stylelint-config-standard',
+    'stylelint-config-standard-scss',
+  ],
+  plugins: ['stylelint-order', 'stylelint-scss'],
   rules: {
+    'no-empty-source': null,
     'color-hex-length': 'short',
     'order/order': [['custom-properties', 'declarations'], { unspecified: 'bottom' }],
     'order/properties-order': [
