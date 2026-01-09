@@ -35,6 +35,14 @@ export default {
       ],
       { unspecified: 'bottomAlphabetical' },
     ],
+    'scss/at-rule-no-unknown': [
+      true,
+      { ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen'] },
+    ],
+    'at-rule-no-unknown': [
+      true,
+      { ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen'] },
+    ],
   },
   ignoreFiles: ['**/node_modules/**', '**/dist/**'],
 };
