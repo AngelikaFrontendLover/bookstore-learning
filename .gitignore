@@ -7,3 +7,5 @@ client/build
 
 server/dist
 server/build
+
+client/.env.local

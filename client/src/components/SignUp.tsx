@@ -1,0 +1,61 @@
+import React, { useState } from 'react';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
+import { auth } from '../libraries/firebase';
+import { useNotification } from '../contexts/NotificationContext';
+
+export default function SignUp() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const { showNotification } = useNotification();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      if (displayName) {
+        await updateProfile(cred.user, { displayName });
+      }
+      showNotification({ type: 'success', message: 'Вы успешно зарегестрированы!' });
+      navigate('/', { replace: true });
+    } catch (err: any) {
+      showNotification({ type: 'error', message: err.message });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Регистрация</h2>
+      <input
+        type="text"
+        placeholder="Имя (необязательно)"
+        value={displayName}
+        onChange={(e) => setDisplayName(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Пароль (мин. 6 символов)"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <button type="submit" disabled={loading}>
+        {loading ? 'Создание...' : 'Зарегистрироваться'}
+      </button>
+    </form>
+  );
+}
