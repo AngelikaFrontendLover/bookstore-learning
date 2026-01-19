@@ -26,7 +26,7 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
     if (notification) {
       const timer = setTimeout(() => {
         clearNotification();
-      }, 3000);
+      }, 9000);
       return () => clearTimeout(timer);
     }
   }, [notification]);

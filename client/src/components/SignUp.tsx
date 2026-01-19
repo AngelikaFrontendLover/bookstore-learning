@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { auth } from '../libraries/firebase';
 import { useNotification } from '../contexts/NotificationContext';
@@ -21,7 +21,7 @@ export default function SignUp() {
       if (displayName) {
         await updateProfile(cred.user, { displayName });
       }
-      showNotification({ type: 'success', message: 'Вы успешно зарегестрированы!' });
+      showNotification({ type: 'success', message: 'You have registered successfully!' });
       navigate('/', { replace: true });
     } catch (err: any) {
       showNotification({ type: 'error', message: err.message });
@@ -31,31 +31,39 @@ export default function SignUp() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Регистрация</h2>
-      <input
-        type="text"
-        placeholder="Имя (необязательно)"
-        value={displayName}
-        onChange={(e) => setDisplayName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Пароль (мин. 6 символов)"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit" disabled={loading}>
-        {loading ? 'Создание...' : 'Зарегистрироваться'}
-      </button>
-    </form>
+    <div className="auth">
+      <form onSubmit={handleSubmit} className="auth__form">
+        <h2 className="auth__title">Sign up</h2>
+        <input
+          type="text"
+          placeholder="Имя (необязательно)"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          className="auth__input"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="auth__input"
+        />
+        <input
+          type="password"
+          placeholder="Пароль (мин. 6 символов)"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          className="auth__input"
+        />
+        <button type="submit" disabled={loading} className="auth__btn">
+          {loading ? 'Creating...' : 'Sign up'}
+        </button>
+      </form>
+      <Link to="/signin" className="auth__switch">
+        Already have an account? Sign in
+      </Link>
+    </div>
   );
 }

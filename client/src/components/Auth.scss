@@ -1,0 +1,68 @@
+@use '../styles/variables' as vars;
+@use '../styles/mixins' as mixins;
+
+.auth {
+  background-color: vars.$color-grey-light;
+  flex-direction: column;
+  min-height: 100vh;
+
+  @include mixins.flex-center;
+
+  &__title {
+    color: vars.$color-green;
+    font-size: vars.$h2-size;
+    font-weight: vars.$font-weight-medium;
+    font-family: vars.$font-heading;
+  }
+
+  &__message {
+    color: vars.$color-orange;
+    font-size: vars.$font-size-sm;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 30px;
+    border: 1px solid vars.$color-green;
+    border-radius: 20px;
+    flex-direction: column;
+    max-width: 340px;
+    min-height: 350px;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid vars.$color-grey;
+    border-radius: 15px;
+    margin-bottom: 7px;
+
+    &::placeholder {
+      font-size: vars.$font-size-sm;
+    }
+
+    &:focus {
+      border-color: vars.$color-green;
+      outline: none;
+    }
+  }
+
+  &__btn {
+    @include mixins.button(vars.$color-green);
+  }
+
+  &__switch {
+    padding: 7px;
+    color: vars.$color-grey;
+    font-size: vars.$font-size-sm;
+  }
+
+  &__reset {
+    margin: 0 auto;
+    color: vars.$color-green;
+    font-size: vars.$font-size-sm;
+  }
+}

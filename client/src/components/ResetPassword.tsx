@@ -1,37 +1,44 @@
 import React, { useState } from 'react';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 import { auth } from '../libraries/firebase';
 import { useNotification } from '../contexts/NotificationContext';
 
 export default function ResetPassword() {
   const [email, setEmail] = useState('');
-  const [msg, setMsg] = useState<string | null>(null);
   const { showNotification } = useNotification();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setMsg(null);
     try {
       await sendPasswordResetEmail(auth, email);
-      setMsg('Письмо для восстановления отправлено.');
+      navigate('/signin', {
+        replace: true,
+        state: { msg: 'A password recovery message has been sent to your email.' },
+      });
     } catch (err: any) {
       showNotification({ type: 'error', message: err.message });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Восстановление пароля</h2>
-      {msg && <p>{msg}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <button type="submit">Отправить</button>
-    </form>
+    <div className="auth">
+      <form onSubmit={handleSubmit} className="auth__form">
+        <h2 className="auth__title">Reset</h2>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="auth__input"
+        />
+        <button type="submit" className="auth__btn">
+          Send
+        </button>
+      </form>
+    </div>
   );
 }

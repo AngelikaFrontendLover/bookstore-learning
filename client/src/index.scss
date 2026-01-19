@@ -1,0 +1,13 @@
+@use '../src/styles/variables' as vars;
+@use '../src/styles/variables';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: vars.$font-primary;
+}

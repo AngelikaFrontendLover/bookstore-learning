@@ -2,13 +2,48 @@ export default {
   extends: [
     'stylelint-config-standard',
     'stylelint-config-css-modules',
-    'stylelint-config-standard',
     'stylelint-config-standard-scss',
   ],
   plugins: ['stylelint-order', 'stylelint-scss'],
   rules: {
     'no-empty-source': null,
     'color-hex-length': 'short',
+
+    // SCSS + Tailwind at-rules
+    'scss/at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'variants',
+          'responsive',
+          'screen',
+          'layer',
+          'use',
+          'mixin',
+          'include',
+        ],
+      },
+    ],
+
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'variants',
+          'responsive',
+          'screen',
+          'layer',
+          'use',
+          'mixin',
+          'include',
+        ],
+      },
+    ],
+
     'order/order': [['custom-properties', 'declarations'], { unspecified: 'bottom' }],
     'order/properties-order': [
       [
@@ -34,14 +69,6 @@ export default {
         'font-weight',
       ],
       { unspecified: 'bottomAlphabetical' },
-    ],
-    'scss/at-rule-no-unknown': [
-      true,
-      { ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen'] },
-    ],
-    'at-rule-no-unknown': [
-      true,
-      { ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen'] },
     ],
   },
   ignoreFiles: ['**/node_modules/**', '**/dist/**'],
