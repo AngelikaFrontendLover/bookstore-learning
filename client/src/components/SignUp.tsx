@@ -36,7 +36,7 @@ export default function SignUp() {
         <h2 className="auth__title">Sign up</h2>
         <input
           type="text"
-          placeholder="Имя (необязательно)"
+          placeholder="Name (optional)"
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
           className="auth__input"
@@ -51,7 +51,7 @@ export default function SignUp() {
         />
         <input
           type="password"
-          placeholder="Пароль (мин. 6 символов)"
+          placeholder="Password (min. 6 characters)"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

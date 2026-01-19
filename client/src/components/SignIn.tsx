@@ -26,7 +26,10 @@ export default function SignIn() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      showNotification({ type: 'success', message: 'Вы вошли!' });
+      showNotification({
+        type: 'success',
+        message: 'Login successful!',
+      });
       navigate('/', { replace: true });
     } catch (err: any) {
       showNotification({ type: 'error', message: err.message });
@@ -50,7 +53,7 @@ export default function SignIn() {
         />
         <input
           type="password"
-          placeholder="Пароль"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
