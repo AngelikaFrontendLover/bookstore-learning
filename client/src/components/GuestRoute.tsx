@@ -4,11 +4,11 @@ import { useAuth } from '../contexts/AuthContext';
 import Loader from './Loader';
 
 export default function GuestRoute({ children }: { children: ReactNode }) {
-    const { user, loading } = useAuth();
+  const { user, loading } = useAuth();
 
-    if (loading) return <Loader />;
+  if (loading) return <Loader />;
 
-    if (user) return <Navigate to="/" replace />;
+  if (user) return <Navigate to="/" replace />;
 
-    return <>{children}</>;
+  return <>{children}</>;
 }
