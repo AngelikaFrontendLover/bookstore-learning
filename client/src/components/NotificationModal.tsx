@@ -10,16 +10,16 @@ export default function NotificationModal() {
       <div
         className={`rounded-lg p-6 shadow-lg w-96 ${
           notification.type === 'error'
-            ? 'bg-red-100 border border-red-400 text-red-700'
+            ? 'bg-red-100 border border-red-300 text-red-400'
             : notification.type === 'success'
-              ? 'bg-green-100 border border-green-400 text-green-700'
-              : 'bg-blue-100 border border-blue-400 text-blue-700'
+              ? 'bg-cyan-200 border border-cyan-300 green-200'
+              : 'bg-blue-300 border border-blue-300 text-blue-400'
         }`}
       >
         <p className="mb-4">{notification.message}</p>
         <button
           onClick={clearNotification}
-          className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700"
+          className="px-4 py-2 bg-slate-400 text-white rounded hover:bg-gray-500"
         >
           Close
         </button>

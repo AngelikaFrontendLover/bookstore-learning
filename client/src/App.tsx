@@ -8,6 +8,7 @@ import ResetPassword from './components/ResetPassword';
 import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './pages/Dashboard';
 import NotificationModal from './components/NotificationModal';
+import GuestRoute from './components/GuestRoute';
 
 function App() {
   return (
@@ -15,8 +16,22 @@ function App() {
       <NotificationModal />
       <BrowserRouter>
         <Routes>
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/signin"
+            element={
+              <GuestRoute>
+                <SignIn />
+              </GuestRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <GuestRoute>
+                <SignUp />
+              </GuestRoute>
+            }
+          />
           <Route path="/reset" element={<ResetPassword />} />
           <Route
             path="/"
