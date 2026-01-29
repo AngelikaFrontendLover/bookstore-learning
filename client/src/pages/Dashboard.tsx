@@ -4,7 +4,9 @@ export default function Dashboard() {
   const { user } = useAuth();
   return (
     <div>
-      <h2>Личный кабинет</h2> <p>Вы вошли как: {user?.email}</p> <SignOutButton />
+      <h2>Personal account</h2>
+      <p>You are logged in as: {user?.email}</p>
+      <SignOutButton />
     </div>
   );
 }
