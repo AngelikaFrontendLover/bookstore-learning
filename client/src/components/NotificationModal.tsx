@@ -12,7 +12,7 @@ export default function NotificationModal() {
           notification.type === 'error'
             ? 'bg-red-100 border border-red-300 text-red-400'
             : notification.type === 'success'
-              ? 'bg-cyan-200 border border-cyan-300 green-200'
+              ? 'bg-cyan-200 border border-cyan-300 text-cyan-800'
               : 'bg-blue-300 border border-blue-300 text-blue-400'
         }`}
       >

@@ -12,9 +12,9 @@ import GuestRoute from './components/GuestRoute';
 
 function App() {
   return (
-    <AuthProvider>
-      <NotificationModal />
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
+        <NotificationModal />
         <Routes>
           <Route
             path="/signin"
@@ -42,8 +42,8 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 export default App;

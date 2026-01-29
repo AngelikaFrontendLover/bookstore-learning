@@ -16,13 +16,22 @@ export default function SignUp() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
+
       if (displayName) {
         await updateProfile(cred.user, { displayName });
       }
-      showNotification({ type: 'success', message: 'You have registered successfully!' });
-      navigate('/', { replace: true });
+
+      showNotification({
+        type: 'success',
+        message: 'Account created!',
+      });
+
+      navigate('/signin', {
+        replace: true,
+      });
     } catch (err: any) {
       showNotification({ type: 'error', message: err.message });
     } finally {
@@ -34,6 +43,7 @@ export default function SignUp() {
     <div className="auth">
       <form onSubmit={handleSubmit} className="auth__form">
         <h2 className="auth__title">Sign up</h2>
+
         <input
           type="text"
           placeholder="Name (optional)"
@@ -41,6 +51,7 @@ export default function SignUp() {
           onChange={(e) => setDisplayName(e.target.value)}
           className="auth__input"
         />
+
         <input
           type="email"
           placeholder="Email"
@@ -49,6 +60,7 @@ export default function SignUp() {
           required
           className="auth__input"
         />
+
         <input
           type="password"
           placeholder="Password (min. 6 characters)"
@@ -57,10 +69,12 @@ export default function SignUp() {
           required
           className="auth__input"
         />
+
         <button type="submit" disabled={loading} className="auth__btn">
           {loading ? 'Creating...' : 'Sign up'}
         </button>
       </form>
+
       <Link to="/signin" className="auth__switch">
         Already have an account? Sign in
       </Link>

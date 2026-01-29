@@ -14,9 +14,9 @@ export default function ResetPassword() {
     e.preventDefault();
     try {
       await sendPasswordResetEmail(auth, email);
+      showNotification({ type: 'info', message: 'Message sent' });
       navigate('/signin', {
         replace: true,
-        state: { msg: 'A password recovery message has been sent to your email.' },
       });
     } catch (err: any) {
       showNotification({ type: 'error', message: err.message });
