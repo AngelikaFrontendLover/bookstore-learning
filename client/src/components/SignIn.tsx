@@ -17,6 +17,15 @@ export default function SignIn() {
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      await auth.currentUser?.reload();
+      const updatedUser = auth.currentUser;
+
+      if (!updatedUser?.emailVerified) {
+        showNotification({ type: 'error', message: 'Please confirm your email' });
+        setLoading(false);
+        return;
+      }
+
       showNotification({ type: 'success', message: 'Login successful!' });
       navigate('/', { replace: true });
     } catch (err: any) {

@@ -9,7 +9,10 @@ export default function GuestRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
 
   if (loading) return <Loader />;
-  if (user) return <Navigate to="/" replace />;
+
+  if (user && user.emailVerified) {
+    return <Navigate to="/" replace />;
+  }
 
   return <>{children}</>;
 }

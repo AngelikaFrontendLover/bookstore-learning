@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { auth } from '../libraries/firebase';
@@ -24,10 +28,9 @@ export default function SignUp() {
         await updateProfile(cred.user, { displayName });
       }
 
-      showNotification({
-        type: 'success',
-        message: 'Account created!',
-      });
+      await sendEmailVerification(cred.user);
+
+      showNotification({ type: 'success', message: 'Account created! Please verify your email.' });
 
       navigate('/signin', {
         replace: true,
