@@ -21,7 +21,10 @@ export default function SignIn() {
       const updatedUser = auth.currentUser;
 
       if (!updatedUser?.emailVerified) {
-        showNotification({ type: 'error', message: 'Please confirm your email. Or press reset password.' });
+        showNotification({
+          type: 'error',
+          message: 'Please confirm your email. Or press reset password.',
+        });
         setLoading(false);
         return;
       }
